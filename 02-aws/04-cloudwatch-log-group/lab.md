@@ -1,23 +1,22 @@
 # Lab AWS 04 — CloudWatch Log Group
 
 ## 🎯 Objetivo
-Parametrizar observabilidad mediante Terraform.
+Parametrizar observabilidad y practicar validaciones.
 
 ## 📝 Actividad
-1. Definir nombre del proyecto.
-2. Definir retención.
-3. Validar los valores permitidos.
-4. Crear el Log Group.
-5. Ejecutar `plan`.
-6. Aplicar.
-7. Modificar la retención.
-8. Revisar el plan.
-9. Destruir.
+1. Definir proyecto y retención.
+2. Validar los valores permitidos.
+3. Crear el Log Group.
+4. Ejecutar `plan`.
+5. Aplicar.
+6. Cambiar la retención.
+7. Comparar el nuevo plan.
+8. Destruir.
 
 ## 💬 Preguntas
-- ¿Por qué conviene parametrizar la retención?
-- ¿Qué diferencia hay entre crear infraestructura y configurar observabilidad?
-- ¿Qué costo puede tener almacenar logs?
+- ¿Por qué parametrizar la retención?
+- ¿Qué impacto puede tener almacenar logs?
+- ¿Qué controles deberían estar centralizados?
 
 ## 💡 Reto
 Crear varios Log Groups con `for_each`.
