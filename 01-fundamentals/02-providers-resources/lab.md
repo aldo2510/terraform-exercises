@@ -1,29 +1,33 @@
 # Lab 02 — Providers y Resources
 
-## Objetivo
-Entender cómo Terraform inicializa providers y cómo se modelan recursos.
+## 🎯 Objetivo
+Comprender la relación entre Terraform, un provider y un resource.
 
-## AWS
-Crear un bucket S3 con tags y configuración básica.
+## 👨‍🏫 Guion del instructor
+Mostrar que Terraform Core no conoce directamente S3, Azure Storage, etc. El provider implementa la comunicación con la API del proveedor cloud.
 
-## Azure
-Crear un Resource Group y una Storage Account.
+## 🧩 Escenario
+Crear un recurso sencillo utilizando el provider correspondiente al laboratorio.
 
-## Pasos
+## 📝 Actividad
 1. Declarar `terraform.required_providers`.
-2. Configurar el provider correspondiente.
-3. Ejecutar `terraform init`.
-4. Crear el recurso.
-5. Revisar `terraform plan`.
-6. Aplicar.
-7. Consultar el estado con `terraform state list` y `terraform show`.
-8. Modificar una propiedad administrable y observar el plan.
-9. Destruir.
+2. Fijar una versión compatible del provider.
+3. Configurar el provider.
+4. Crear un resource.
+5. Ejecutar `terraform init`.
+6. Ejecutar `terraform fmt` y `terraform validate`.
+7. Ejecutar `terraform plan`.
+8. Aplicar.
+9. Revisar `terraform state list`.
+10. Ejecutar `terraform destroy`.
 
-## Conceptos
-- Provider.
-- Resource.
-- Address del recurso.
-- Dependencias implícitas.
-- State.
-- Create/update/destroy.
+## 💬 Preguntas
+- ¿Qué hace `terraform init`?
+- ¿Qué diferencia existe entre provider y resource?
+- ¿Dónde guarda Terraform la relación entre configuración y recurso real?
+
+## 💡 Reto
+Agregar tags mediante un mapa y evitar duplicación con `locals`.
+
+## ✅ Solución
+Consultar los `.tf` y `solution.md`.
