@@ -1,39 +1,78 @@
-# Arquitectura 05 — Procesamiento asíncrono
+# Laboratorio 05 — Multicloud: procesamiento asíncrono
 
 ## Objetivo
 
-Construir una arquitectura donde el productor y el consumidor estén desacoplados mediante una cola.
+Implementar el mismo patrón lógico de cola en AWS y Azure y comparar cómo Terraform representa la misma capacidad con diferentes providers.
 
-## AWS
+## Arquitectura
 
-Aplicación → SQS → Lambda.
+AWS:
+Productor → SQS → consumidor
 
-## Azure
+Azure:
+Productor → Storage Queue → consumidor
 
-Aplicación → Storage Queue → Azure Function.
+El laboratorio provisiona las colas. El consumidor se deja como siguiente ejercicio para concentrar la sesión en infraestructura y desacoplamiento.
 
-## Flujo
+## Paso 1 — Preparar las dos nubes
 
-Productor → Queue → Function → Log
+AWS: configura AWS CLI.
 
-## Conceptos Terraform
+Azure:
 
-- Asynchronous architecture.
-- Queues.
-- Event-driven processing.
-- Permisos.
-- Retry y desacoplamiento.
+    az login
+    az account set --subscription "<SUBSCRIPTION_ID>"
 
-## Ejercicio
+## Paso 2 — Analizar
 
-Enviar un mensaje a la cola y procesarlo mediante una función.
+Antes de mirar main.tf, identifica qué cambia y qué se mantiene igual entre AWS y Azure.
 
-## Preguntas
+## Paso 3 — Inicializar
 
-- ¿Qué problema resuelve la cola?
-- ¿Qué pasa si el consumidor está temporalmente indisponible?
-- ¿Por qué esta arquitectura desacopla los componentes?
+    terraform init
+    terraform fmt
+    terraform validate
+    terraform plan
 
-## Restricción de costos
+## Paso 4 — Aplicar
 
-Utilizar únicamente servicios serverless y colas administradas.
+    terraform apply
+
+Terraform creará:
+
+- una cola SQS en AWS;
+- una Storage Queue en Azure;
+- el Storage Account necesario en Azure;
+- el Resource Group de Azure.
+
+## Paso 5 — Revisar outputs
+
+    terraform output
+
+Compara las URLs de las dos colas.
+
+## Paso 6 — Debate
+
+Preguntas:
+
+1. ¿Qué parte del patrón es igual?
+2. ¿Qué nombres de recursos cambian?
+3. ¿Qué provider gestiona cada componente?
+4. ¿Cómo reutilizarías variables comunes?
+5. ¿Cómo diseñarías un módulo multicloud?
+
+## Paso 7 — Limpiar
+
+    terraform destroy
+
+## Archivos de solución
+
+- versions.tf
+- providers.tf
+- variables.tf
+- main.tf
+- outputs.tf
+
+## Objetivo pedagógico
+
+Este ejercicio no busca conectar AWS y Azure. Busca que el alumno aprenda a expresar un mismo patrón arquitectónico en dos providers y pueda comparar diferencias de implementación.
