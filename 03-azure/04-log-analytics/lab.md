@@ -1,13 +1,23 @@
-# Azure Lab 04 — Log Analytics Workspace
+# Lab Azure 04 — Log Analytics
 
-## Objetivo
-Crear una base de observabilidad en Azure.
+## 🎯 Objetivo
+Parametrizar un Workspace de observabilidad y validar inputs.
 
-## Pasos
-1. Crear Resource Group.
-2. Crear Log Analytics Workspace.
-3. Parametrizar SKU y retention.
-4. Añadir validaciones.
-5. Crear outputs de ID y nombre.
-6. Modificar retention y revisar `plan`.
-7. Destruir.
+## 📝 Actividad
+1. Definir location.
+2. Definir SKU.
+3. Definir retención.
+4. Agregar validation.
+5. Crear Resource Group y Workspace.
+6. Ejecutar `plan`.
+7. Aplicar.
+8. Cambiar retención y analizar el plan.
+9. Destruir.
+
+## 💬 Preguntas
+- ¿Qué aporta IaC a observabilidad?
+- ¿Qué parámetros deberían ser variables?
+- ¿Qué reglas deberían estar en políticas?
+
+## 💡 Reto
+Crear varios Workspaces mediante `for_each`.
