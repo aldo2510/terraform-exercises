@@ -1,7 +1,0 @@
-aws_region = "us-east-1"
-project_name = "tf-training"
-environment = "dev"
-tags = {
-  owner = "student"
-  cost_center = "training"
-}
