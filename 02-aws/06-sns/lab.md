@@ -1,16 +1,23 @@
-# Lab — SNS
+# Lab AWS 06 — SNS y count condicional
 
-## Objetivo
-Practicar SNS de forma reusable y parametrizada.
+## 🎯 Objetivo
+Practicar recursos opcionales con `count`.
 
-## Paso a paso
-1. Preparar el root module y declarar variables.
-2. Definir los recursos necesarios sin máquinas virtuales.
-3. Ejecutar `terraform fmt`, `terraform validate` y `terraform plan`.
-4. Aplicar y revisar el State.
-5. Modificar una variable y analizar el diff.
-6. Documentar outputs y dependencias.
-7. Destruir todos los recursos al terminar.
+## 📝 Actividad
+1. Crear SNS Topic.
+2. Definir un email opcional.
+3. Usar `count` para crear la subscription solo cuando exista email.
+4. Ejecutar `plan`.
+5. Aplicar.
+6. Confirmar la subscription si corresponde.
+7. Cambiar el email a `null`.
+8. Comparar el plan.
+9. Destruir.
 
-## Buenas prácticas
-No almacenar credenciales, secretos ni `.tfstate` en Git. Cada alumno trabaja con su propia cuenta cloud.
+## 💬 Preguntas
+- ¿Qué significa `count = 0`?
+- ¿Qué ocurre al pasar de 0 a 1?
+- ¿Cuándo sería mejor `for_each`?
+
+## 💡 Reto
+Soportar múltiples endpoints con `for_each`.
