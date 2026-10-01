@@ -108,3 +108,94 @@ y destruir los recursos cuando corresponda.
 ## Recursos
 
 Consulta la documentación oficial de Terraform y de cada provider antes de usar una versión distinta a la indicada por el laboratorio.
+
+
+## 👨‍🏫 Cómo utilizar el repositorio en clase
+
+Este repositorio está pensado como **material del instructor**, no como una colección de ejercicios para entregar sin explicación.
+
+Cada `lab.md` funciona como un guion de sesión:
+
+1. **Objetivo** — qué concepto se quiere enseñar.
+2. **Guion del instructor** — qué explicar antes de escribir código.
+3. **Actividad** — pasos que el instructor desarrolla con los alumnos.
+4. **Preguntas** — preguntas para comprobar comprensión.
+5. **Validación** — comandos y comportamiento esperado.
+6. **Reto** — extensión opcional para profundizar.
+7. **Solución** — archivos Terraform y `solution.md` para mostrar después del ejercicio.
+
+### Sesión 01 — Terraform Core
+
+Secuencia sugerida:
+
+```text
+IaC
+ ↓
+Terraform
+ ↓
+HCL
+ ↓
+Provider
+ ↓
+Resource
+ ↓
+Variables
+ ↓
+terraform.tfvars
+ ↓
+Locals
+ ↓
+Outputs
+ ↓
+Expressions
+ ↓
+count / for_each
+ ↓
+Validation
+ ↓
+State
+```
+
+Se recomienda resolver primero los ejercicios de `01-fundamentals/` y utilizar AWS/Azure únicamente como contexto práctico cuando sea necesario.
+
+### Sesión 02 — Despliegues Multicloud
+
+Secuencia sugerida:
+
+```text
+AWS Provider ─────┐
+                  ├── Terraform
+Azure Provider ───┘
+       ↓
+Storage
+       ↓
+Data / Observability
+       ↓
+Networking
+       ↓
+Modules
+       ↓
+Multicloud
+```
+
+Los alumnos utilizan sus propias cuentas AWS y Azure.
+
+### Patrón recomendado durante la clase
+
+No mostrar inmediatamente la solución.
+
+```text
+1. Explicar concepto
+2. Plantear escenario
+3. Alumno propone solución
+4. Escribir código
+5. terraform fmt
+6. terraform validate
+7. terraform plan
+8. Analizar resultado
+9. terraform apply
+10. Revisar resultado
+11. Mostrar solution.md
+12. Comparar con la solución de referencia
+13. Plantear reto
+```
