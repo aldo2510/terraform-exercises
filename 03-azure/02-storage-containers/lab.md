@@ -1,13 +1,26 @@
-# Azure Lab 02 — Containers y for_each
+# Lab Azure 02 — Storage Containers y for_each
 
-## Objetivo
-Crear múltiples containers de Blob Storage usando `for_each`.
+## 🎯 Objetivo
+Crear varios Blob Containers sin duplicar bloques.
 
-## Pasos
-1. Crear Storage Account.
-2. Definir un mapa de containers.
+## 👨‍🏫 Guion del instructor
+Mostrar los resource addresses generados por `for_each`.
+
+## 📝 Actividad
+1. Definir un `set(string)`.
+2. Crear Storage Account.
 3. Crear containers con `for_each`.
-4. Exponer sus nombres.
-5. Agregar un nuevo elemento al mapa y revisar el plan.
-6. Eliminar un elemento y revisar cómo Terraform identifica el recurso.
-7. Destruir.
+4. Ejecutar `plan`.
+5. Aplicar.
+6. Agregar un container.
+7. Ejecutar nuevamente `plan`.
+8. Analizar los addresses.
+9. Destruir.
+
+## 💬 Preguntas
+- ¿Por qué utilizar set?
+- ¿Qué diferencia existe con una lista?
+- ¿Qué sucede si cambia una key?
+
+## 💡 Reto
+Usar un mapa de objetos para definir configuración por container.
