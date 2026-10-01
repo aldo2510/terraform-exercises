@@ -1,40 +1,78 @@
-# Arquitectura 06 — API Serverless con persistencia
+# Laboratorio 06 — Multicloud: persistencia administrada
 
 ## Objetivo
 
-Construir una arquitectura funcional que combine API, procesamiento serverless y una base de datos administrada.
+Comparar una arquitectura de persistencia administrada en AWS y Azure.
 
-## AWS
+## Arquitectura
 
-API Gateway → Lambda → DynamoDB.
+AWS:
+Aplicación → DynamoDB
 
-## Azure
+Azure:
+Aplicación → Azure Table Storage
 
-API Management → Azure Function → Cosmos DB.
+La práctica se enfoca en infraestructura y modelado Terraform; no se necesita una aplicación permanente.
 
-## Flujo
+## Paso 1 — Preparar clouds
 
-Cliente → API → Function → NoSQL
+Configura AWS CLI y Azure CLI.
 
-## Ejercicio
+Azure:
 
-Implementar conceptualmente una operación sencilla de lectura/escritura.
+    az login
+    az account set --subscription "<SUBSCRIPTION_ID>"
 
-## Conceptos Terraform
+## Paso 2 — Analizar
 
-- Composición de módulos y recursos.
-- Variables.
-- Outputs.
-- IAM/RBAC.
-- Persistencia.
-- Arquitectura serverless.
+Identifica:
 
-## Preguntas
+- tabla NoSQL en AWS;
+- almacenamiento de tablas en Azure;
+- configuración de capacidad;
+- nombre e identidad de cada recurso.
 
-- ¿Por qué utilizar NoSQL en este ejemplo?
-- ¿Qué responsabilidad tiene cada componente?
-- ¿Dónde colocarías validaciones y autorización?
+## Paso 3 — Inicializar
 
-## Restricción de costos
+    terraform init
+    terraform fmt
+    terraform validate
+    terraform plan
 
-Usar configuraciones mínimas de laboratorio y evitar cargas permanentes o escalamiento innecesario.
+## Paso 4 — Aplicar
+
+    terraform apply
+
+AWS utiliza DynamoDB con PAY_PER_REQUEST para evitar provisionar capacidad fija.
+
+Azure crea un Storage Account LRS y una tabla administrada.
+
+## Paso 5 — Revisar outputs
+
+    terraform output
+
+Compara los nombres de las tablas.
+
+## Paso 6 — Debate arquitectónico
+
+1. ¿Qué responsabilidad comparten DynamoDB y Table Storage?
+2. ¿Qué diferencias de modelado existen?
+3. ¿Qué configuración de capacidad cambia entre providers?
+4. ¿Cómo diseñarías un módulo para abstraer una tabla lógica?
+5. ¿Qué información debería permanecer específica de cada cloud?
+
+## Paso 7 — Limpiar
+
+    terraform destroy
+
+## Archivos de solución
+
+- versions.tf
+- providers.tf
+- variables.tf
+- main.tf
+- outputs.tf
+
+## Nota
+
+La arquitectura es intencionalmente pequeña. El objetivo es comparar capacidades administradas y providers, no construir una plataforma de datos completa.
