@@ -1,0 +1,7 @@
+# aws
+
+Ejercicios AWS sin máquinas virtuales: S3, DynamoDB, CloudWatch y multicloud.
+
+Cada ejercicio contiene un `lab.md` con objetivo, prerequisitos, paso a paso, validaciones y limpieza.
+
+> Cada alumno trabaja con su propia cuenta AWS/Azure. No subir credenciales ni secretos al repositorio.
