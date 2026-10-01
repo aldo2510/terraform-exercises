@@ -1,24 +1,14 @@
 # Terraform Exercises — AWS & Azure
 
-Repositorio de ejercicios prácticos de Terraform orientado a una clase de infraestructura.
+Repositorio de ejercicios prácticos de Terraform para clases one-to-one de infraestructura.
 
 ## 🎯 Enfoque
 
-La organización está pensada para enseñar **el mismo concepto en AWS y Azure**, de forma paralela.
+La organización enseña el mismo concepto en AWS y Azure de forma paralela. No se utilizan máquinas virtuales: los laboratorios se enfocan en recursos pequeños como S3, Resource Groups, Storage Accounts y Blob Containers.
 
-No se utilizan máquinas virtuales. Los laboratorios trabajan con servicios como:
+## 🧭 Estructura
 
-- AWS S3
-- AWS CloudWatch
-- AWS Data Sources
-- Azure Resource Groups
-- Azure Storage
-- Azure Data Sources
-- Azure Blob Containers
-
-## 🧭 Estructura actual de la clase
-
-```text
+```
 01-aws/
   01-provider/
   02-resources/
@@ -27,6 +17,12 @@ No se utilizan máquinas virtuales. Los laboratorios trabajan con servicios como
   05-data/
   06-validation/
   07-metaarguments/
+  08-locals/
+  09-expressions-functions/
+  10-count-vs-for-each/
+  11-lifecycle/
+  12-dependencies/
+  13-import/
 
 02-azure/
   01-provider/
@@ -36,32 +32,47 @@ No se utilizan máquinas virtuales. Los laboratorios trabajan con servicios como
   05-data/
   06-validation/
   07-metaarguments/
+  08-locals/
+  09-expressions-functions/
+  10-count-vs-for-each/
+  11-lifecycle/
+  12-dependencies/
+  13-import/
 
 03-multicloud/
   01-providers/
   02-inputs-outputs/
+  03-variable-sources/
+
+04-state/
+  01-state-basics/
+  02-state-commands/
+  03-remote-backend/
+  04-import-and-state/
+
+05-modules/
+  01-first-module/
+  02-module-inputs-outputs/
+  03-module-aws-azure/
+  04-module-composition/
 ```
 
-Cada laboratorio tiene su propio `README.md` y su `main.tf` de solución.
+Cada laboratorio está pensado para explicar el concepto, dejar que el alumno lo implemente y finalmente comparar con la solución.
 
-## 👨‍🏫 Cómo usarlo durante la sesión
-
-La idea no es entregar primero la solución.
-
-Para cada carpeta:
+## 👨‍🏫 Flujo recomendado para la sesión
 
 1. Explicar el concepto.
-2. Mostrar el escenario.
-3. Pedir a los alumnos que propongan la configuración.
-4. Escribir o completar el Terraform durante la clase.
-5. Ejecutar `terraform fmt`.
-6. Ejecutar `terraform validate`.
-7. Ejecutar `terraform plan`.
-8. Analizar el plan.
-9. Ejecutar `terraform apply`.
-10. Revisar el resultado en AWS/Azure.
-11. Mostrar el `main.tf` de referencia.
-12. Comparar la solución de los alumnos con las buenas prácticas.
+2. Presentar el escenario.
+3. Pedir al alumno que proponga la configuración.
+4. Implementar y ejecutar `terraform fmt`.
+5. Ejecutar `terraform validate`.
+6. Revisar `terraform plan`.
+7. Analizar el resultado.
+8. Aplicar y revisar el recurso en la nube.
+9. Comparar con la solución.
+10. Destruir los recursos al finalizar.
+
+Los README de los laboratorios avanzados incluyen preguntas y errores intencionales para facilitar la dinámica one-to-one.
 
 ## 🧱 Conceptos cubiertos
 
@@ -69,27 +80,24 @@ Para cada carpeta:
 |---|---|---|
 | Provider | ✅ | ✅ |
 | Resources | ✅ | ✅ |
-| Variables / Inputs | ✅ | ✅ |
-| terraform.tfvars | ✅ | ✅ |
+| Variables / tfvars | ✅ | ✅ |
 | Outputs | ✅ | ✅ |
 | Data Sources | ✅ | ✅ |
-| Validations | ✅ | ✅ |
+| Validation | ✅ | ✅ |
 | Meta-arguments | ✅ | ✅ |
+| Locals | ✅ | ✅ |
+| Expressions / Functions | ✅ | ✅ |
+| count / for_each | ✅ | ✅ |
+| lifecycle | ✅ | ✅ |
+| Dependencies | ✅ | ✅ |
+| Import | ✅ | ✅ |
+| State | — | — |
+| Modules | AWS | AWS + Azure |
 | Multicloud | ✅ | ✅ |
 
 ## 🔐 Autenticación
 
-Cada alumno utiliza su propia cuenta AWS y su propia suscripción Azure.
-
-No colocar:
-
-- AWS Access Key
-- AWS Secret Key
-- Client Secret
-- Passwords
-- Tokens
-
-dentro de los archivos Terraform.
+Cada alumno utiliza su propia cuenta AWS y su propia suscripción Azure. No se almacenan credenciales, tokens ni secretos en el repositorio.
 
 ## 🧪 Comandos base
 
@@ -105,18 +113,16 @@ terraform destroy
 
 ## 💡 Buenas prácticas
 
-Los ejemplos utilizan:
-
-- `required_providers` con versiones acotadas.
+- Versiones de Terraform y providers acotadas.
 - Variables con tipos explícitos.
-- Descripciones.
-- Validaciones cuando corresponde.
-- Outputs documentados.
-- Referencias entre resources para crear dependencias explícitas.
-- `for_each` cuando existe una colección con identidad estable.
+- Validaciones cuando corresponda.
+- Outputs claros.
+- Dependencias mediante referencias cuando sea posible.
+- for_each cuando existe identidad estable.
 - Sin credenciales hardcodeadas.
-- Recursos pequeños y adecuados para laboratorios.
+- State remoto para equipos y ambientes compartidos.
+- Módulos pequeños, reutilizables y con inputs/outputs claros.
 
 ## 📚 Ejercicios propuestos
 
-Consulta [ejercicios-propuestos.md](ejercicios-propuestos.md) para extensiones que los alumnos pueden resolver después de los laboratorios guiados.
+Consulta `ejercicios-propuestos.md` para prácticas adicionales.
