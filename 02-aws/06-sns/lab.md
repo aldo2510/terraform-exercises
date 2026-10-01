@@ -9,10 +9,9 @@ Practicar recursos opcionales con `count`.
 3. Usar `count` para crear la subscription solo cuando exista email.
 4. Ejecutar `plan`.
 5. Aplicar.
-6. Confirmar la subscription si corresponde.
-7. Cambiar el email a `null`.
-8. Comparar el plan.
-9. Destruir.
+6. Cambiar el email a `null`.
+7. Comparar el plan.
+8. Destruir.
 
 ## 💬 Preguntas
 - ¿Qué significa `count = 0`?
