@@ -4,7 +4,7 @@
 Comprender cómo Terraform coordina providers diferentes.
 
 ## 👨‍🏫 Guion del instructor
-Cada alumno utiliza sus propias cuentas AWS y Azure. Mostrar primero qué parte es común y qué parte es específica de cada provider.
+Mostrar qué parte de la configuración es común y qué parte es específica de cada cloud.
 
 ## 📝 Actividad
 1. Configurar AWS y Azure.
@@ -18,7 +18,7 @@ Cada alumno utiliza sus propias cuentas AWS y Azure. Mostrar primero qué parte 
 
 ## 💬 Preguntas
 - ¿Qué código puede reutilizarse?
-- ¿Qué debe quedar específico del cloud?
+- ¿Qué debe ser específico del cloud?
 - ¿Cuándo conviene utilizar módulos?
 
 ## 💡 Reto
