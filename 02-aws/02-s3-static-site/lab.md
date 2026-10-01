@@ -1,17 +1,25 @@
-# AWS Lab 02 — S3 para contenido estático
+# Lab AWS 02 — S3 y controles de acceso
 
-## Objetivo
-Crear infraestructura para alojar contenido estático sin máquinas virtuales.
+## 🎯 Objetivo
+Crear un bucket S3 aplicando configuraciones básicas de seguridad.
 
-## Pasos
-1. Crear bucket S3.
+## 👨‍🏫 Guion del instructor
+El objetivo no es simplemente crear un bucket, sino enseñar que una configuración IaC debe incorporar controles seguros por defecto.
+
+## 📝 Actividad
+1. Crear un bucket con nombre parametrizado.
 2. Configurar ownership controls.
-3. Configurar acceso público únicamente con la política/documentación del ejercicio.
-4. Crear configuración de website si la versión del provider seleccionada lo soporta.
-5. Subir archivos de prueba como recursos Terraform.
-6. Exponer el nombre y endpoint mediante outputs.
-7. Revisar dependencias.
+3. Configurar public access block.
+4. Agregar tags.
+5. Ejecutar `plan`.
+6. Aplicar.
+7. Revisar la configuración en AWS.
 8. Destruir.
 
-## Resultado
-Un bucket administrado completamente con Terraform.
+## 💬 Preguntas
+- ¿Por qué no debemos habilitar acceso público por defecto?
+- ¿Qué problema resuelve ownership controls?
+- ¿Qué parte de la configuración representa seguridad?
+
+## 💡 Reto
+Agregar versioning y una lifecycle rule.
