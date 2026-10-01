@@ -1,0 +1,6 @@
+project_name = "tftraining"
+environment = "dev"
+location = "East US"
+tags = {
+  owner = "student"
+}
