@@ -1,56 +1,97 @@
-# Terraform Exercises — AWS + Azure
+# Terraform Exercises — AWS & Azure
 
-Repositorio de laboratorios prácticos de Terraform para capacitación en Infrastructure as Code.
+Repositorio de ejercicios prácticos de Terraform orientado a una clase de infraestructura.
 
-## Enfoque
+## 🎯 Enfoque
 
-Los ejercicios están diseñados para trabajar con **cuentas individuales de AWS y Azure** y evitan la creación de máquinas virtuales. Se priorizan servicios administrados, almacenamiento, observabilidad, mensajería, identidad y conceptos propios de Terraform.
+La organización está pensada para enseñar **el mismo concepto en AWS y Azure**, de forma paralela.
 
-## Estructura
+No se utilizan máquinas virtuales. Los laboratorios trabajan con servicios como:
 
-- `01-fundamentals/` — variables, tfvars, providers, resources, outputs, locals, meta-arguments y validaciones.
-- `02-aws/` — ejercicios AWS.
-- `03-azure/` — ejercicios Azure.
-- `04-state-lifecycle/` — State, backend, lifecycle e import.
-- `05-expressions/` — expresiones, funciones, for expressions y dynamic blocks.
-- `06-modules/` — módulos y composición.
-- `ejercicios-propuestos.md` — banco adicional de ejercicios y retos.
-- Cada laboratorio contiene `lab.md` y, cuando aplica, archivos Terraform de solución.
+- AWS S3
+- AWS CloudWatch
+- AWS Data Sources
+- Azure Resource Groups
+- Azure Storage
+- Azure Data Sources
+- Azure Blob Containers
 
-## Prerrequisitos
+## 🧭 Estructura actual de la clase
 
-### Terraform
+```text
+01-aws/
+  01-provider/
+  02-resources/
+  03-variables-tfvars/
+  04-outputs/
+  05-data/
+  06-validation/
+  07-metaarguments/
 
-Usar Terraform >= 1.5.0.
+02-azure/
+  01-provider/
+  02-resources/
+  03-variables-tfvars/
+  04-outputs/
+  05-data/
+  06-validation/
+  07-metaarguments/
 
-Verificar:
-
-```bash
-terraform version
+03-multicloud/
+  01-providers/
+  02-inputs-outputs/
 ```
 
-### AWS
+Cada laboratorio tiene su propio `README.md` y su `main.tf` de solución.
 
-Autenticarse mediante AWS CLI/profile o el mecanismo estándar de credenciales.
+## 👨‍🏫 Cómo usarlo durante la sesión
 
-```bash
-aws sts get-caller-identity
-```
+La idea no es entregar primero la solución.
 
-### Azure
+Para cada carpeta:
 
-Autenticarse mediante Azure CLI.
+1. Explicar el concepto.
+2. Mostrar el escenario.
+3. Pedir a los alumnos que propongan la configuración.
+4. Escribir o completar el Terraform durante la clase.
+5. Ejecutar `terraform fmt`.
+6. Ejecutar `terraform validate`.
+7. Ejecutar `terraform plan`.
+8. Analizar el plan.
+9. Ejecutar `terraform apply`.
+10. Revisar el resultado en AWS/Azure.
+11. Mostrar el `main.tf` de referencia.
+12. Comparar la solución de los alumnos con las buenas prácticas.
 
-```bash
-az login
-az account show
-```
+## 🧱 Conceptos cubiertos
 
-No colocar access keys, client secrets, tokens ni passwords dentro de los archivos `.tf`.
+| Concepto | AWS | Azure |
+|---|---|---|
+| Provider | ✅ | ✅ |
+| Resources | ✅ | ✅ |
+| Variables / Inputs | ✅ | ✅ |
+| terraform.tfvars | ✅ | ✅ |
+| Outputs | ✅ | ✅ |
+| Data Sources | ✅ | ✅ |
+| Validations | ✅ | ✅ |
+| Meta-arguments | ✅ | ✅ |
+| Multicloud | ✅ | ✅ |
 
-## Flujo recomendado
+## 🔐 Autenticación
 
-Desde la carpeta de cada ejercicio:
+Cada alumno utiliza su propia cuenta AWS y su propia suscripción Azure.
+
+No colocar:
+
+- AWS Access Key
+- AWS Secret Key
+- Client Secret
+- Passwords
+- Tokens
+
+dentro de los archivos Terraform.
+
+## 🧪 Comandos base
 
 ```bash
 terraform init
@@ -62,140 +103,20 @@ terraform output
 terraform destroy
 ```
 
-## Variables
+## 💡 Buenas prácticas
 
-Los ejemplos se proporcionan como `terraform.tfvars.example`.
+Los ejemplos utilizan:
 
-Copiar antes de ejecutar:
-
-```bash
-cp terraform.tfvars.example terraform.tfvars
-```
-
-No versionar el `.tfvars` real cuando contenga información sensible.
-
-## Buenas prácticas aplicadas
-
-- Providers con versiones.
-- Variables tipadas y documentadas.
-- Validaciones.
-- Locals para valores derivados.
-- Outputs descriptivos.
-- Tags comunes.
-- Naming parametrizado.
+- `required_providers` con versiones acotadas.
+- Variables con tipos explícitos.
+- Descripciones.
+- Validaciones cuando corresponde.
+- Outputs documentados.
+- Referencias entre resources para crear dependencias explícitas.
+- `for_each` cuando existe una colección con identidad estable.
 - Sin credenciales hardcodeadas.
-- Recursos de bajo impacto para laboratorios.
-- Limpieza mediante `terraform destroy`.
+- Recursos pequeños y adecuados para laboratorios.
 
-## Soluciones
+## 📚 Ejercicios propuestos
 
-Los archivos Terraform incluidos en los laboratorios representan una solución de referencia. Los `solution.md` explican las decisiones y buenas prácticas.
-
-Para usar el repositorio como evaluación, se recomienda ocultar las soluciones al alumno o entregar únicamente `lab.md` y los archivos starter.
-
-## Seguridad y costos
-
-Cada alumno es responsable de revisar el costo de los recursos antes de ejecutar `apply`. Algunos servicios pueden generar cargos incluso durante un laboratorio corto.
-
-Siempre revisar:
-
-```bash
-terraform plan
-```
-
-y destruir los recursos cuando corresponda.
-
-## Recursos
-
-Consulta la documentación oficial de Terraform y de cada provider antes de usar una versión distinta a la indicada por el laboratorio.
-
-
-## 👨‍🏫 Cómo utilizar el repositorio en clase
-
-Este repositorio está pensado como **material del instructor**, no como una colección de ejercicios para entregar sin explicación.
-
-Cada `lab.md` funciona como un guion de sesión:
-
-1. **Objetivo** — qué concepto se quiere enseñar.
-2. **Guion del instructor** — qué explicar antes de escribir código.
-3. **Actividad** — pasos que el instructor desarrolla con los alumnos.
-4. **Preguntas** — preguntas para comprobar comprensión.
-5. **Validación** — comandos y comportamiento esperado.
-6. **Reto** — extensión opcional para profundizar.
-7. **Solución** — archivos Terraform y `solution.md` para mostrar después del ejercicio.
-
-### Sesión 01 — Terraform Core
-
-Secuencia sugerida:
-
-```text
-IaC
- ↓
-Terraform
- ↓
-HCL
- ↓
-Provider
- ↓
-Resource
- ↓
-Variables
- ↓
-terraform.tfvars
- ↓
-Locals
- ↓
-Outputs
- ↓
-Expressions
- ↓
-count / for_each
- ↓
-Validation
- ↓
-State
-```
-
-Se recomienda resolver primero los ejercicios de `01-fundamentals/` y utilizar AWS/Azure únicamente como contexto práctico cuando sea necesario.
-
-### Sesión 02 — Despliegues Multicloud
-
-Secuencia sugerida:
-
-```text
-AWS Provider ─────┐
-                  ├── Terraform
-Azure Provider ───┘
-       ↓
-Storage
-       ↓
-Data / Observability
-       ↓
-Networking
-       ↓
-Modules
-       ↓
-Multicloud
-```
-
-Los alumnos utilizan sus propias cuentas AWS y Azure.
-
-### Patrón recomendado durante la clase
-
-No mostrar inmediatamente la solución.
-
-```text
-1. Explicar concepto
-2. Plantear escenario
-3. Alumno propone solución
-4. Escribir código
-5. terraform fmt
-6. terraform validate
-7. terraform plan
-8. Analizar resultado
-9. terraform apply
-10. Revisar resultado
-11. Mostrar solution.md
-12. Comparar con la solución de referencia
-13. Plantear reto
-```
+Consulta [ejercicios-propuestos.md](ejercicios-propuestos.md) para extensiones que los alumnos pueden resolver después de los laboratorios guiados.
