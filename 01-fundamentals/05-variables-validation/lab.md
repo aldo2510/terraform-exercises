@@ -1,18 +1,24 @@
 # Lab 05 — Variables y validaciones
 
-## Objetivo
-Aplicar validaciones para impedir configuraciones inválidas antes de llegar al cloud.
+## 🎯 Objetivo
+Evitar configuraciones inválidas antes de crear infraestructura.
 
-## Validaciones sugeridas
-- Ambiente solo puede ser `dev`, `qa` o `prod`.
-- Región no puede estar vacía.
-- Lista de nombres debe tener al menos un elemento.
-- Tags obligatorios deben incluir `environment` y `owner`.
+## 👨‍🏫 Guion del instructor
+Mostrar que las validaciones son una primera barrera de calidad y que deben expresar reglas del dominio, no lógica innecesariamente compleja.
 
-## Pasos
-1. Declarar variables con tipos.
-2. Agregar bloques `validation`.
-3. Ejecutar `terraform validate`.
-4. Probar valores intencionalmente inválidos.
-5. Corregir y ejecutar `plan`.
-6. Crear recursos cuando todas las validaciones pasen.
+## 📝 Actividad
+1. Crear una variable `environment`.
+2. Aceptar únicamente `dev`, `qa` y `prod`.
+3. Validar un nombre mediante expresión regular.
+4. Validar una lista no vacía.
+5. Crear un mapa de tags obligatorios.
+6. Probar valores inválidos.
+7. Ejecutar `terraform validate` y `terraform plan`.
+
+## 💬 Preguntas
+- ¿Qué diferencia hay entre error de sintaxis y error de validación?
+- ¿Qué reglas conviene validar en Terraform?
+- ¿Qué reglas deberían vivir en una política externa?
+
+## 💡 Reto
+Validar un object completo con varias propiedades.
