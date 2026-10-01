@@ -1,131 +1,163 @@
-# Ejercicios propuestos de Terraform — AWS + Azure
+# Ejercicios propuestos
 
-Estos ejercicios complementan los laboratorios del repositorio. Cada alumno debe trabajar con su propia cuenta de AWS y/o Azure.
+Estos ejercicios están pensados para después de los laboratorios guiados. No incluyen la solución para que los alumnos puedan resolverlos.
 
-## Reglas generales
+## AWS
 
-- No crear máquinas virtuales.
-- No almacenar credenciales en Git.
-- No subir `.tfstate`, secretos ni archivos `.tfvars` con valores sensibles.
-- Usar `.tfvars` solo para configuración no sensible; para credenciales usar la cadena de autenticación oficial de cada cloud.
-- Ejecutar siempre `terraform fmt`, `terraform validate` y `terraform plan` antes de `apply`.
-- Destruir los recursos al finalizar cuando el ejercicio no requiera conservarlos.
+### 1. S3 con variables
+Crear un bucket S3 cuyo nombre se construya a partir de:
 
-## Nivel 1 — Fundamentos
+- project
+- environment
+- owner
 
-1. Variables simples y valores por defecto.
-2. Variables complejas: list, set, map y object.
-3. `.tfvars` y precedencia de variables.
-4. Providers y versiones.
-5. Resources y dependencias.
-6. Outputs normales y sensitive.
-7. Locals y tags comunes.
-8. Validaciones con `validation`.
-9. `count` para múltiples recursos.
-10. `for_each` con mapas.
-11. Operador condicional.
-12. Funciones de strings y colecciones.
+Agregar tags mediante una variable `map(string)`.
 
-## Nivel 2 — AWS
+### 2. S3 con outputs
+Exponer:
 
-13. S3 con naming dinámico.
-14. S3 + ownership controls + public access block.
-15. DynamoDB en modo PAY_PER_REQUEST.
-16. CloudWatch Log Group con retention parametrizable.
-17. SNS Topic y subscription opcional.
-18. SQS Queue y DLQ.
-19. EventBridge Rule.
-20. VPC con subnets, route tables y security groups, sin EC2.
-21. IAM Role y Policy document.
-22. KMS Key para practicar cifrado administrado.
-23. ECR Repository.
-24. Secrets Manager: diseñar el recurso sin subir secretos al repositorio.
+- nombre
+- ARN
+- región
 
-## Nivel 2 — Azure
+### 3. DynamoDB
+Crear una tabla DynamoDB parametrizando:
 
-25. Resource Group + Storage Account.
-26. Blob Containers con `for_each`.
-27. Key Vault.
-28. Log Analytics Workspace.
-29. Event Grid Topic.
-30. Service Bus Namespace + Queue.
-31. Azure Container Registry.
-32. Application Insights.
-33. Virtual Network + subnets, sin máquinas virtuales.
-34. Network Security Group.
-35. Managed Identity.
+- nombre
+- hash key
+- billing mode
 
-## Nivel 3 — Terraform avanzado
+Agregar outputs.
 
-36. `lifecycle` y `ignore_changes`.
-37. `prevent_destroy`.
-38. `create_before_destroy`.
-39. Importación de recursos existentes.
-40. Backend remoto.
-41. State locking.
-42. Drift detection.
-43. Modules con inputs y outputs.
-44. Módulos con providers.
-45. Módulos AWS + Azure.
-46. `for_each` sobre módulos.
-47. Dynamic blocks.
-48. For expressions.
-49. Object types y validaciones complejas.
-50. Arquitectura multicloud reutilizable.
+### 4. Validaciones
+Crear una variable `environment` que solamente acepte:
 
-## Retos adicionales
+`dev`, `qa`, `prod`.
 
-### Reto A — Naming corporativo
-Construir una convención:
-`<cloud>-<project>-<environment>-<component>-<suffix>`.
+Agregar una segunda validación para una variable numérica.
 
-### Reto B — Tags obligatorios
-Rechazar configuraciones que no incluyan `environment`, `owner` y `cost_center`.
+### 5. Data Source
+Utilizar `aws_caller_identity` y crear un tag con el account ID.
 
-### Reto C — Modo seguro
-Crear una variable `enable_public_access` y validar que solo pueda habilitarse en `dev`.
+### 6. for_each
+Crear varios Log Groups de CloudWatch a partir de un mapa.
 
-### Reto D — Multiambiente
-Usar `dev.tfvars`, `qa.tfvars` y `prod.tfvars`.
+### 7. count
+Crear un SNS Topic opcional dependiendo de una variable booleana.
 
-### Reto E — Multi-cloud
-Crear almacenamiento equivalente en AWS y Azure usando un root module y módulos separados.
+---
 
-## Entregable esperado
+## Azure
 
-Cada ejercicio debe contener como mínimo:
+### 8. Resource Group parametrizado
+Crear un Resource Group usando:
+
+- project
+- environment
+- location
+
+Agregar tags.
+
+### 9. Storage Account
+Crear un Storage Account con:
+
+- nombre
+- tier
+- replication
+- location
+
+Todos definidos mediante variables.
+
+### 10. Outputs
+Exponer:
+
+- Resource Group ID
+- Storage Account ID
+- Storage Account name
+- location
+
+### 11. Data Source
+Consultar información de la identidad actual utilizando `azurerm_client_config`.
+
+### 12. Validaciones
+Validar:
+
+- environment
+- naming del Storage Account
+- replication type
+
+### 13. for_each
+Crear múltiples Blob Containers usando un mapa de objetos.
+
+### 14. lifecycle
+Agregar `prevent_destroy` a un recurso y analizar el comportamiento de `terraform plan`.
+
+---
+
+## Multicloud
+
+### 15. AWS + Azure
+Crear:
+
+- un S3 Bucket en AWS
+- un Resource Group en Azure
+
+Usar un conjunto pequeño de variables comunes.
+
+### 16. Providers con alias
+Configurar dos regiones AWS mediante aliases y crear un bucket en cada región.
+
+### 17. Módulos
+Crear un módulo AWS para S3 y un módulo Azure para Resource Group.
+
+Cada módulo debe tener:
+
+- `variables.tf`
+- `outputs.tf`
+- `README.md`
+
+### 18. Composición
+Crear un root module que invoque los módulos AWS y Azure.
+
+El root debe controlar los inputs y consumir los outputs.
+
+---
+
+## Reto final
+
+Construir una pequeña plataforma multicloud que reciba como inputs:
 
 ```text
-lab.md
-main.tf
-variables.tf
-outputs.tf
-terraform.tfvars.example
-README.md
+project_name
+environment
+aws_region
+azure_location
+tags
 ```
 
-Cuando corresponda, agregar:
+y cree:
 
 ```text
-locals.tf
-data.tf
-versions.tf
-providers.tf
-backend.tf
-modules/
-solution.md
+AWS
+ └── S3
+
+Azure
+ └── Resource Group
+      └── Storage Account
 ```
 
-## Criterios de buenas prácticas
+El resultado debe exponer outputs separados por cloud.
+
+### Criterios de revisión
 
 - Providers versionados.
-- Variables con description y type.
-- Validaciones donde aporten valor.
-- Locals para valores derivados.
-- Outputs descriptivos.
-- Naming consistente.
-- Tags estandarizados.
-- Principio de mínimo privilegio.
-- Nada de secretos hardcodeados.
-- State remoto para escenarios colaborativos.
-- Cambios pequeños y verificables.
+- Variables tipadas.
+- Validaciones.
+- Data sources cuando corresponda.
+- Outputs documentados.
+- Uso correcto de `for_each` / `count`.
+- Sin credenciales en el código.
+- `terraform fmt`.
+- `terraform validate`.
+- Plan revisado antes de apply.
+- Recursos destruidos al finalizar el laboratorio.
