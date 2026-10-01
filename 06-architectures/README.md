@@ -1,23 +1,24 @@
 # Arquitecturas funcionales con Terraform
 
-Esta sección reúne arquitecturas pequeñas y funcionales para pasar de ejercicios aislados a soluciones que representan casos de uso reales.
+Cada laboratorio contiene un escenario, flujo arquitectónico, objetivos, preguntas, pasos de implementación, solución Terraform, prueba funcional y limpieza.
 
-## Principios
+| Lab | Cloud | Arquitectura |
+|---|---|---|
+| 01 | AWS | S3 + CloudWatch |
+| 02 | AWS | S3 → Lambda → CloudWatch Logs |
+| 03 | Azure | Storage Static Website |
+| 04 | Azure | HTTP Function serverless |
+| 05 | Multicloud | SQS + Azure Storage Queue |
+| 06 | Multicloud | DynamoDB + Azure Table Storage |
 
-- Costos bajos: evitar VMs, Kubernetes y servicios que permanezcan encendidos.
-- Componentes administrados y pequeños.
-- Cada arquitectura debe poder destruirse completamente al terminar.
-- El objetivo es aprender composición de recursos, no construir una plataforma enterprise completa.
+La secuencia está pensada para que primero se practique composición dentro de AWS, después dentro de Azure y finalmente se compare el mismo patrón lógico en dos clouds.
 
-## Arquitecturas propuestas
+## Reglas
 
-| Laboratorio | AWS | Azure | Caso funcional |
-|---|---|---|---|
-| 01 | S3 + CloudWatch | Storage Account + Monitor | Almacenamiento y observabilidad básica |
-| 02 | S3 + Lambda | Storage + Function | Procesamiento de archivos |
-| 03 | S3 + CloudFront | Blob Storage + CDN | Sitio web estático |
-| 04 | API Gateway + Lambda | API Management + Function | API serverless |
-| 05 | SQS + Lambda | Storage Queue + Function | Procesamiento asíncrono |
-| 06 | DynamoDB + Lambda | Cosmos DB + Function | API serverless con persistencia |
+- Sin VMs.
+- Sin Kubernetes.
+- Configuraciones pequeñas.
+- Destruir al terminar.
+- Revisar precios y free tier vigente.
 
-> Los laboratorios deben ejecutarse de forma aislada y destruirse al finalizar. Algunos servicios pueden generar cargos aunque el uso sea pequeño; revisar siempre precios y free tier vigente de la cuenta antes de aplicar.
+La solución está dentro de cada carpeta. El alumno debe intentar primero la arquitectura y luego comparar su implementación con los archivos Terraform.
