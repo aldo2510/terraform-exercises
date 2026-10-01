@@ -39,6 +39,7 @@ resource "azurerm_storage_blob" "index" {
   type = "Block"
   content_type = "text/html"
   source_content = file("${path.module}/site/index.html")
+  depends_on = [azurerm_storage_account_static_website.this]
 }
 
 resource "azurerm_storage_blob" "not_found" {
@@ -47,4 +48,5 @@ resource "azurerm_storage_blob" "not_found" {
   type = "Block"
   content_type = "text/html"
   source_content = file("${path.module}/site/404.html")
+  depends_on = [azurerm_storage_account_static_website.this]
 }
