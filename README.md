@@ -55,6 +55,14 @@ La organización enseña el mismo concepto en AWS y Azure de forma paralela. No 
   02-module-inputs-outputs/
   03-module-aws-azure/
   04-module-composition/
+
+06-architectures/
+  01-storage-observability/
+  02-file-processing/
+  03-static-web/
+  04-serverless-api/
+  05-async-processing/
+  06-serverless-data/
 ```
 
 Cada laboratorio está pensado para explicar el concepto, dejar que el alumno lo implemente y finalmente comparar con la solución.
