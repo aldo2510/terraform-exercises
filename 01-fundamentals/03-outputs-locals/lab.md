@@ -1,16 +1,27 @@
 # Lab 03 — Outputs y Locals
 
-## Objetivo
-Usar outputs para exponer información útil y locals para evitar duplicación.
+## 🎯 Objetivo
+Utilizar `locals` para valores derivados y `outputs` para exponer información útil.
 
-## Pasos
-1. Crear un recurso de almacenamiento.
-2. Definir locals para nombre, ambiente y tags.
-3. Reutilizar los locals en múltiples recursos.
-4. Definir outputs para nombre, ARN/ID y endpoint cuando esté disponible.
-5. Aplicar.
-6. Ejecutar `terraform output`.
-7. Probar un output sensible y explicar por qué no evita almacenar el valor en state.
+## 👨‍🏫 Guion del instructor
+Explicar que un local no es un input del usuario: es un valor calculado dentro de la configuración. Un output es una interfaz de salida del módulo/root module.
 
-## Variación
+## 📝 Actividad
+1. Crear un recurso.
+2. Definir un local para el nombre.
+3. Definir un local para tags comunes.
+4. Utilizar esos locals en el resource.
+5. Crear outputs para nombre e ID/ARN.
+6. Ejecutar `terraform apply`.
+7. Ejecutar `terraform output`.
+
+## 💬 Preguntas
+- ¿Cuándo usarías local en lugar de variable?
+- ¿Qué información no deberías imprimir como output?
+- ¿Qué significa `sensitive = true`?
+
+## 💡 Reto
 Crear un segundo recurso que reutilice los mismos locals.
+
+## ✅ Solución
+Consultar los archivos Terraform de esta carpeta.
