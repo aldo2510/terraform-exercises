@@ -1,21 +1,29 @@
 # Lab 04 — Meta-arguments: count y for_each
 
-## Objetivo
-Practicar meta-arguments para crear colecciones de recursos sin duplicar bloques.
+## 🎯 Objetivo
+Crear múltiples instancias de un resource y comprender el impacto en Terraform State.
 
-## Ejercicio
-Crear múltiples buckets S3 o Storage Containers, según una variable.
+## 👨‍🏫 Guion del instructor
+Primero resolver con `count`. Después migrar a `for_each`. Mostrar `terraform state list` y explicar los resource addresses.
 
-## Pasos
-1. Definir una lista o mapa de nombres.
-2. Implementar primero con `count`.
-3. Revisar addresses del state.
-4. Migrar a `for_each`.
-5. Comparar el comportamiento al cambiar un elemento.
-6. Aplicar y destruir.
+## 📝 Actividad
+1. Definir una colección de elementos.
+2. Crear recursos con `count`.
+3. Ejecutar `terraform plan`.
+4. Aplicar.
+5. Revisar `terraform state list`.
+6. Eliminar un elemento intermedio.
+7. Ejecutar `plan` y analizar los cambios.
+8. Rehacer el ejercicio con `for_each`.
+9. Comparar los dos planes.
 
-## Discusión
-Explicar cuándo conviene `count` y cuándo `for_each`.
+## 💬 Preguntas
+- ¿Por qué `count` utiliza índices?
+- ¿Por qué `for_each` utiliza keys?
+- ¿Qué ocurre si cambia una key?
 
-## Restricción
-No crear máquinas virtuales.
+## 💡 Reto
+Utilizar un mapa de objetos como entrada de `for_each`.
+
+## ✅ Solución
+Consultar los archivos Terraform de esta carpeta.
