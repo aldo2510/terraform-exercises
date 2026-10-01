@@ -1,16 +1,23 @@
-# Lab 01 — State y backend remoto
+# Lab State 01 — Backend y Terraform State
 
-## Objetivo
-Comprender dónde vive Terraform State y por qué el state no debe tratarse como un archivo cualquiera.
+## 🎯 Objetivo
+Comprender State y la razón de utilizar un backend remoto.
 
-## Pasos
-1. Ejecutar primero con backend local.
-2. Revisar `terraform.tfstate` y `terraform state list`.
-3. Seleccionar un backend remoto apropiado para AWS o Azure.
-4. Migrar el state siguiendo el procedimiento oficial del backend.
-5. Verificar que los recursos existentes no se recrean.
-6. Ejecutar plan.
-7. Documentar ventajas y riesgos.
+## 👨‍🏫 Guion del instructor
+Primero mostrar State local y después explicar colaboración, locking, seguridad y recuperación.
 
-## Nota
-El laboratorio debe adaptarse a la cuenta del alumno y no compartir un state entre alumnos.
+## 📝 Actividad
+1. Ejecutar `terraform init`.
+2. Aplicar un recurso de laboratorio.
+3. Ejecutar `terraform state list`.
+4. Inspeccionar el State.
+5. Configurar el backend indicado por la solución.
+6. Ejecutar `terraform init` nuevamente.
+7. Verificar la gestión remota.
+8. Destruir al finalizar.
+
+## 💬 Preguntas
+- ¿Qué información contiene State?
+- ¿Por qué no debe subirse a Git?
+- ¿Qué problema resuelve locking?
+- ¿Por qué el backend es parte de la arquitectura?
