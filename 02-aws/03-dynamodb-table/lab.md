@@ -1,22 +1,25 @@
 # Lab AWS 03 — DynamoDB
 
 ## 🎯 Objetivo
-Crear una tabla DynamoDB parametrizable y comprender su configuración declarativa.
+Crear una tabla DynamoDB y practicar configuración declarativa.
+
+## 👨‍🏫 Guion del instructor
+Explicar que el objetivo es modelar infraestructura, no desarrollar la aplicación que consumirá DynamoDB.
 
 ## 📝 Actividad
-1. Definir nombre de tabla.
-2. Definir la clave primaria.
-3. Utilizar `PAY_PER_REQUEST`.
-4. Agregar tags.
-5. Ejecutar `init`, `fmt`, `validate`, `plan`.
-6. Aplicar.
-7. Revisar la tabla.
+1. Definir el nombre mediante variable.
+2. Crear la tabla.
+3. Definir la clave primaria.
+4. Usar `PAY_PER_REQUEST`.
+5. Agregar tags.
+6. Ejecutar `terraform init`, `fmt`, `validate` y `plan`.
+7. Aplicar y revisar la tabla.
 8. Destruir.
 
 ## 💬 Preguntas
-- ¿Qué diferencia hay entre capacidad provisionada y bajo demanda?
 - ¿Qué representa `hash_key`?
-- ¿Qué cambios provocarían reemplazo?
+- ¿Qué ventaja tiene PAY_PER_REQUEST en un laboratorio?
+- ¿Qué cambios podrían reemplazar la tabla?
 
 ## 💡 Reto
-Agregar un índice secundario y parametrizarlo.
+Parametrizar un índice secundario.
