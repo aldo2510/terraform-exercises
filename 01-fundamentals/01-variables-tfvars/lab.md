@@ -1,26 +1,39 @@
-# Lab 01 — Variables, tfvars y parametrización
+# Lab 01 — Variables y terraform.tfvars
 
-## Objetivo
-Construir una configuración Terraform reutilizable aprendiendo variables, tipos, valores por defecto, archivos `.tfvars` y precedencia de valores.
+## 🎯 Objetivo
+Aprender a parametrizar una configuración Terraform sin hardcodear valores y comprender la separación entre código y configuración.
 
-## Cloud
-AWS y Azure, trabajando con una etiqueta/nombre común para los recursos.
+## 👨‍🏫 Guion del instructor
+Explicar primero que Terraform tiene inputs, lógica y outputs. Mostrar que una misma configuración puede ejecutarse para `dev`, `qa` y `prod` cambiando valores, no el código.
 
-## Pasos
-1. Crear `main.tf`, `variables.tf`, `terraform.tfvars` y `outputs.tf`.
-2. Declarar variables para nombre del proyecto, ambiente, región, etiquetas y costo máximo.
-3. Usar tipos explícitos: `string`, `number`, `bool`, `list(string)` y `map(string)`.
-4. Configurar el provider de AWS o Azure mediante variables.
-5. Crear un recurso pequeño y de bajo costo:
-   - AWS: S3 Bucket.
-   - Azure: Resource Group y Storage Account.
-6. Sobrescribir valores con otro archivo `.tfvars`.
-7. Probar precedencia usando `-var`, `-var-file` y variables de entorno.
-8. Ejecutar `terraform fmt`, `validate`, `plan` y `apply`.
-9. Destruir los recursos al terminar.
+## 🧩 Escenario
+Construiremos un componente simple cuyo nombre, ambiente y tags serán configurables.
 
-## Entregable
-La configuración debe permitir cambiar ambiente y nombres sin modificar los archivos de recursos.
+## 📝 Actividad
+1. Crear `variables.tf`.
+2. Definir `project_name` como `string`.
+3. Definir `environment` como `string`.
+4. Definir `tags` como `map(string)`.
+5. Crear `terraform.tfvars.example`.
+6. Crear el recurso del laboratorio usando las variables.
+7. Ejecutar `terraform init`.
+8. Ejecutar `terraform fmt -recursive`.
+9. Ejecutar `terraform validate`.
+10. Ejecutar `terraform plan`.
+11. Aplicar y revisar los outputs.
+12. Ejecutar `terraform destroy`.
 
-## Importante
-No guardar credenciales cloud, secretos ni archivos `.tfstate` en Git.
+## 💬 Preguntas para los alumnos
+- ¿Qué diferencia hay entre una variable y un local?
+- ¿Qué ocurre si no definimos una variable sin default?
+- ¿Por qué no debemos guardar credenciales en `tfvars`?
+- ¿Qué ventaja tiene `terraform.tfvars.example`?
+
+## 🔎 Validación
+Cambiar el ambiente a `qa` y comprobar que el plan modifica únicamente lo necesario.
+
+## 💡 Reto
+Crear una variable `application` de tipo `object` con nombre, owner y version.
+
+## ✅ Solución
+Revisar los archivos `.tf` y `solution.md` de esta carpeta.
