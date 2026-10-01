@@ -1,40 +1,66 @@
-# Arquitectura 01 — Storage + Observabilidad
+# Laboratorio 01 — AWS: Storage + Observabilidad
 
 ## Objetivo
 
-Construir una arquitectura funcional mínima para almacenar objetos y disponer de observabilidad básica.
-
-## AWS
-
-S3 + CloudWatch.
-
-## Azure
-
-Storage Account + Azure Monitor/diagnostic settings.
+Crear un bucket S3 privado, aplicar controles básicos y configurar una alarma de CloudWatch sobre el número de objetos.
 
 ## Flujo
 
-Usuario → Storage → métricas/logs
+Alumno → S3 → métricas de almacenamiento → CloudWatch Alarm
 
-## Conceptos Terraform
+## Paso 1 — Autenticación
 
-- Composición de recursos.
-- Variables y locals.
-- Outputs.
-- Dependencias.
-- Tags.
-- Observabilidad básica.
+Configura AWS CLI con la cuenta de laboratorio.
 
-## Preguntas para el alumno
+## Paso 2 — Inicializar
 
-1. ¿Qué recurso representa el almacenamiento?
-2. ¿Qué información sería útil monitorear?
-3. ¿Qué configuración debería ser variable entre ambientes?
+Ejecuta:
 
-## Error intencional
+    terraform init
+    terraform fmt
+    terraform validate
 
-Crear el almacenamiento sin una política clara de acceso y luego revisar qué controles mínimos deberían existir.
+## Paso 3 — Reto del alumno
 
-## Restricción de costos
+Antes de abrir main.tf, intenta definir:
 
-No utilizar VMs ni bases de datos. Usar únicamente recursos administrados de almacenamiento y monitoreo.
+- S3 bucket.
+- Bloqueo de acceso público.
+- Ownership controls.
+- Versioning.
+- Cifrado.
+- CloudWatch Alarm.
+
+## Paso 4 — Revisar la solución
+
+La solución está en:
+
+- versions.tf
+- providers.tf
+- variables.tf
+- main.tf
+- outputs.tf
+
+## Paso 5 — Aplicar
+
+    terraform plan
+    terraform apply
+
+## Paso 6 — Probar
+
+Ejecuta terraform output y revisa el bucket en S3.
+
+La métrica NumberOfObjects puede actualizarse con una frecuencia no inmediata. El objetivo es aprender a declarar la relación entre almacenamiento y observabilidad.
+
+## Paso 7 — Limpiar
+
+    terraform destroy
+
+Si el bucket tiene objetos, elimínalos primero.
+
+## Preguntas
+
+1. ¿Por qué bloquear el acceso público?
+2. ¿Qué configuración cambiarías entre dev y prod?
+3. ¿Qué recurso depende de otro?
+4. ¿Qué otras métricas te interesaría monitorear?
