@@ -1,26 +1,25 @@
 # Lab AWS 05 — Introducción a multicloud
 
 ## 🎯 Objetivo
-Comprender cómo una configuración Terraform puede coordinar providers diferentes.
+Comprender cómo Terraform coordina providers diferentes.
 
 ## 👨‍🏫 Guion del instructor
-El objetivo es mostrar composición, no crear una arquitectura productiva completa. Cada alumno debe tener acceso a sus propias cuentas.
+Cada alumno utiliza sus propias cuentas AWS y Azure. Mostrar primero qué parte es común y qué parte es específica de cada provider.
 
 ## 📝 Actividad
-1. Configurar AWS.
-2. Configurar Azure.
-3. Crear un recurso simple en cada cloud.
-4. Parametrizar nombres y ambiente.
-5. Ejecutar `terraform plan`.
-6. Identificar qué provider gestiona cada resource.
-7. Aplicar.
-8. Revisar outputs.
-9. Destruir.
+1. Configurar AWS y Azure.
+2. Definir variables comunes.
+3. Crear un recurso sencillo en cada cloud.
+4. Ejecutar `terraform plan`.
+5. Identificar el provider de cada resource.
+6. Aplicar.
+7. Revisar outputs.
+8. Destruir.
 
 ## 💬 Preguntas
-- ¿Qué es específico del provider?
-- ¿Qué parte puede ser común?
-- ¿Dónde conviene separar la lógica mediante módulos?
+- ¿Qué código puede reutilizarse?
+- ¿Qué debe quedar específico del cloud?
+- ¿Cuándo conviene utilizar módulos?
 
 ## 💡 Reto
-Extraer cada cloud a un módulo independiente.
+Separar AWS y Azure en módulos.
