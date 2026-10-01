@@ -23,3 +23,6 @@ Explicar que el objetivo es modelar infraestructura, no desarrollar la aplicaci�
 
 ## 💡 Reto
 Parametrizar un índice secundario.
+
+## ✅ Solución
+Consultar los archivos Terraform y `solution.md` de esta carpeta.
