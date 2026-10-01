@@ -1,13 +1,26 @@
-# Lab 03 — Importación de recursos existentes
+# Lab State 03 — Importación
 
-## Objetivo
-Aprender el flujo de adopción de un recurso existente.
+## 🎯 Objetivo
+Incorporar a Terraform un recurso que ya existe en el cloud.
 
-## Pasos
-1. Crear manualmente un recurso pequeño en la cuenta del alumno.
-2. Escribir el bloque Terraform correspondiente.
-3. Importar el recurso.
-4. Ejecutar `terraform plan`.
-5. Ajustar la configuración hasta obtener un plan coherente.
-6. Documentar el ID utilizado para importación.
-7. Eliminar el recurso al finalizar si ya no es necesario.
+## 👨‍🏫 Guion del instructor
+Crear un recurso pequeño desde la consola cloud y después incorporarlo a Terraform.
+
+## 📝 Actividad
+1. Crear el recurso manualmente.
+2. Declarar el resource en Terraform.
+3. Obtener su ID.
+4. Ejecutar `terraform import`.
+5. Ejecutar `terraform state list`.
+6. Ejecutar `terraform plan`.
+7. Ajustar la configuración hasta representar el recurso.
+8. Gestionarlo desde Terraform.
+9. Destruir cuando corresponda.
+
+## 💬 Preguntas
+- ¿Import crea infraestructura?
+- ¿Qué modifica realmente?
+- ¿Por qué puede aparecer drift después de importar?
+
+## 💡 Reto
+Investigar y probar el bloque declarativo `import`.
