@@ -1,0 +1,6 @@
+subscription_id      = "00000000-0000-0000-0000-000000000000"
+location             = "East US"
+project_name         = "terraform-class"
+environment          = "dev"
+storage_account_name = "tfclassaldo001"
+replication_type     = "LRS"
