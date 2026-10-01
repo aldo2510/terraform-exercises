@@ -1,14 +1,26 @@
-# Azure Lab 01 — Resource Group y Storage Account
+# Lab Azure 01 — Resource Group y Storage Account
 
-## Objetivo
-Crear infraestructura base de almacenamiento en Azure.
+## 🎯 Objetivo
+Crear recursos Azure y observar dependencias implícitas.
 
-## Pasos
-1. Configurar `azurerm`.
-2. Parametrizar subscription/tenant mediante el mecanismo de autenticación del alumno.
-3. Crear Resource Group.
-4. Crear Storage Account.
-5. Aplicar naming consistente.
-6. Agregar tags.
-7. Exponer IDs y nombres mediante outputs.
-8. Destruir.
+## 👨‍🏫 Guion del instructor
+Cada alumno trabaja con su propia suscripción. No se deben almacenar client secrets en el repositorio.
+
+## 📝 Actividad
+1. Ejecutar `az login`.
+2. Ejecutar `az account show`.
+3. Configurar AzureRM.
+4. Crear Resource Group.
+5. Crear Storage Account usando el Resource Group.
+6. Ejecutar `init`, `fmt`, `validate` y `plan`.
+7. Aplicar.
+8. Revisar outputs.
+9. Destruir.
+
+## 💬 Preguntas
+- ¿Cómo detecta Terraform la dependencia?
+- ¿Por qué el Storage Account tiene requisitos de naming?
+- ¿Qué sucede si cambiamos location?
+
+## 💡 Reto
+Agregar tags obligatorios mediante variables y validation.
