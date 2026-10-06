@@ -1,0 +1,4 @@
+bucket       = "REEMPLAZAR_CON_EL_NOMBRE_DE_TU_BUCKET"
+key          = "14-remote-state-s3/exercise/terraform.tfstate"
+region       = "us-east-1"
+use_lockfile = true
