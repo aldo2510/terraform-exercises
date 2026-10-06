@@ -74,25 +74,123 @@ Verifica:
 gcloud config get-value project
 ```
 
-## 6. Instalar y configurar Google Cloud CLI
+## 6. Instalar Google Cloud CLI (gcloud)
 
-Comprueba que `gcloud` esté instalado:
+La **Google Cloud CLI** incluye el comando `gcloud`, que utilizaremos para autenticarnos, seleccionar proyectos y administrar recursos desde la terminal.
+
+La instalación oficial está disponible para **Linux, macOS y Windows**. Google también ofrece Cloud Shell, donde `gcloud` ya viene instalado. citeturn0search0turn0search7
+
+### Opción A — macOS y Linux
+
+La forma más sencilla para un laboratorio es utilizar el instalador oficial:
+
+```bash
+curl https://sdk.cloud.google.com | bash
+```
+
+Durante la instalación:
+
+1. Selecciona el directorio donde se instalará `google-cloud-sdk`.
+2. Acepta agregar `gcloud` al `PATH`.
+3. Puedes habilitar el autocompletado de comandos.
+
+Después reinicia la shell:
+
+```bash
+exec -l $SHELL
+```
+
+Comprueba la instalación:
 
 ```bash
 gcloud version
 ```
 
-Autentícate:
+Google documenta este método para macOS y Linux. citeturn0search0
+
+### Opción B — Debian / Ubuntu
+
+También puedes instalar la Google Cloud CLI mediante el paquete oficial de Google para Debian/Ubuntu. Consulta la documentación oficial para el repositorio y los comandos correspondientes:
+
+https://docs.cloud.google.com/sdk/docs/install-sdk?hl=es-419
+
+> Para este repositorio recomendamos el instalador oficial si quieres una instalación rápida para los laboratorios.
+
+### Opción C — Windows
+
+Descarga e instala el instalador oficial de Google Cloud CLI para Windows:
+
+https://cloud.google.com/sdk/docs/install
+
+El instalador puede incluir Python y configurar los componentes necesarios. Al finalizar, abre una nueva terminal y verifica:
+
+```powershell
+gcloud version
+```
+
+Google también permite instalarla mediante el instalador de Windows desde PowerShell. citeturn0search6
+
+### Opción D — Google Cloud Shell
+
+Si no quieres instalar nada localmente, puedes utilizar **Cloud Shell** desde Google Cloud Console.
+
+Cloud Shell ya proporciona `gcloud` y otras herramientas de Google Cloud:
+
+```bash
+gcloud version
+```
+
+Esto es especialmente útil para los primeros ejercicios del repositorio. citeturn0search10
+
+### Inicializar Google Cloud CLI
+
+Después de instalar `gcloud`, inicializa la configuración:
+
+```bash
+gcloud init
+```
+
+El proceso te permitirá:
+
+1. Iniciar sesión con tu cuenta de Google.
+2. Seleccionar el proyecto.
+3. Configurar una configuración inicial de `gcloud`.
+
+También puedes autenticarte directamente:
 
 ```bash
 gcloud auth login
 ```
 
-Configura el proyecto:
+Selecciona el proyecto del laboratorio:
 
 ```bash
 gcloud config set project <PROJECT_ID>
 ```
+
+Verifica:
+
+```bash
+gcloud config get-value project
+```
+
+Y comprueba el acceso al proyecto:
+
+```bash
+gcloud projects describe <PROJECT_ID>
+```
+
+### Verificación final
+
+Ejecuta:
+
+```bash
+gcloud version
+gcloud auth list
+gcloud config get-value project
+```
+
+Si estos comandos funcionan, tu entorno está listo para continuar con Terraform.
 
 ## 7. Preparar Terraform
 
